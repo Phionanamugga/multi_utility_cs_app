@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Report Power Outage{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Report Power Outage</h2>
+    <form action="/report-power-outage" method="post">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        
+        <label for="account_id">Account ID:</label>
+        <input type="text" id="account_id" name="account_id" required>
+        
+        <button type="submit">Submit</button>
+    </form>
+</section>
+{% endblock %}
