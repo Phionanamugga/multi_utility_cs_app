@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Multi-Utility Services{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Welcome, {{ user.name }}</h2>
+    <p>Choose a service to get started:</p>
+    <ul>
+        <li><a href="/report-power-outage">Report Power Outage</a></li>
+        <li><a href="/report-water-issue">Report Water Issue</a></li>
+        <li><a href="/report-ferry-trip">Report Missed Ferry Trip</a></li>
+    </ul>
+</section>
+{% endblock %}
