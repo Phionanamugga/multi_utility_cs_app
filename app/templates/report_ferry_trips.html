@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Report Missed Ferry Trip{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Report Missed Ferry Trip</h2>
+    <form action="/report-ferry-trip" method="post">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        
+        <label for="trip_time">Missed Trip Time:</label>
+        <input type="text" id="trip_time" name="trip_time" placeholder="e.g., 14:30" required>
+        
+        <button type="submit">Submit</button>
+    </form>
+</section>
+{% endblock %}
