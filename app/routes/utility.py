@@ -1,5 +1,19 @@
 from datetime import datetime
 import uuid
+from multi_utility_cs_app.services.email_service import (
+    send_outage_report_email, send_water_issue_email, send_ferry_missed_trip_email
+)
+from multi_utility_cs_app.services.phone_service import (
+    send_outage_report_sms, send_water_issue_sms, send_ferry_missed_trip_sms
+)
+
+# Example usage after creating a ticket for a power outage
+send_outage_report_sms(user.phone, ticket_id, location)
+
+
+# Example usage after creating a ticket for a power outage
+send_outage_report_email(user.email, ticket_id, location)
+
 
 # Simulated database for simplicity
 reports_db = {
@@ -12,6 +26,7 @@ reports_db = {
 def generate_ticket_id():
     """Generates a unique ticket ID."""
     return str(uuid.uuid4())
+
 
 
 # --------------------------
