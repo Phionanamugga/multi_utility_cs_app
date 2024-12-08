@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Report Water Issue{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Report Water Issue</h2>
+    <form action="/report-water-issue" method="post">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        
+        <label for="issue_type">Issue Type:</label>
+        <select id="issue_type" name="issue_type" required>
+            <option value="" disabled selected>Select an issue</option>
+            <option value="no_supply">No Supply</option>
+            <option value="leak">Leak</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+</section>
+{% endblock %}
