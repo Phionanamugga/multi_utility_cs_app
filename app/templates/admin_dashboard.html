@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Admin Dashboard</h2>
+    <p>Manage reported issues:</p>
+    
+    <h3>Power Outages</h3>
+    <ul>
+        {% for outage in power_outages %}
+        <li>
+            <strong>Location:</strong> {{ outage.location }} | 
+            <strong>Account ID:</strong> {{ outage.account_id }} | 
+            <strong>Status:</strong> {{ outage.status }}
+            <button>Resolve</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Water Issues</h3>
+    <ul>
+        {% for issue in water_issues %}
+        <li>
+            <strong>Location:</strong> {{ issue.location }} | 
+            <strong>Type:</strong> {{ issue.issue_type }} | 
+            <strong>Status:</strong> {{ issue.status }}
+            <button>Resolve</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Missed Ferry Trips</h3>
+    <ul>
+        {% for trip in ferry_trips %}
+        <li>
+            <strong>Location:</strong> {{ trip.location }} | 
+            <strong>Time:</strong> {{ trip.trip_time }} | 
+            <strong>Status:</strong> {{ trip.status }}
+            <button>Resolve</button>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
