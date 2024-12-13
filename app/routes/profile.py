@@ -1,7 +1,11 @@
+
+#from flask_jwt_extended import jwt_required, get_jwt_identity
+#from app.extensions import db
+
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.models import User
-from app.extensions import db
+from app.models import User  # Assuming a User model exists in app.models
+from app import db  # Assuming the database instance is initialized in app.__init__.py
+
 
 profile_bp = Blueprint('profile', __name__)  # Blueprint for profile routes
 
@@ -59,3 +63,65 @@ def update_profile():
         return jsonify({"error": "Failed to update profile"}), 500
 
     return jsonify({"message": "Profile updated successfully"}), 200
+
+from flask import Blueprint, request, jsonify
+from app.models import User  # Assuming a User model exists in app.models
+from app import db  # Assuming the database instance is initialized in app.__init__.py
+
+# Create a blueprint for profile-related routes
+profile_bp = Blueprint('profile', __name__, url_prefix='/profile')
+
+# Route to fetch a user profile
+@profile_bp.route('/<int:user_id>', methods=['GET'])
+def get_profile(user_id):
+    """
+    Retrieve the profile of a user by ID.
+    """
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Serialize user data for response
+    return jsonify({
+        "id": user.id,
+        "email": user.email,
+        "phone": user.phone,
+        "created_at": user.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+    }), 200
+
+# Route to update a user profile
+@profile_bp.route('/<int:user_id>', methods=['PUT'])
+def update_profile(user_id):
+    """
+    Update a user's profile.
+    """
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    data = request.json
+    email = data.get('email')
+    phone = data.get('phone')
+
+    # Update fields if provided
+    if email:
+        user.email = email
+    if phone:
+        user.phone = phone
+
+    db.session.commit()
+    return jsonify({"message": "Profile updated successfully"}), 200
+
+# Route to delete a user profile
+@profile_bp.route('/<int:user_id>', methods=['DELETE'])
+def delete_profile(user_id):
+    """
+    Delete a user's profile.
+    """
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({"message": "Profile deleted successfully"}), 200
