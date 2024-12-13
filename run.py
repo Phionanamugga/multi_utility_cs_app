@@ -1,8 +1,13 @@
 from app import create_app
 
-if __name__ == "__main__":
-    # Create the Flask application instance
-    app = create_app()
+app = create_app()
 
-    # Run the application
-    app.run(debug=True, host='0.0.0.0', port=8000)
+# Define a root route for the app
+@app.route("/")
+def home():
+    return "Welcome to the Multi-Utility App!"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000, debug=True)
+
+
