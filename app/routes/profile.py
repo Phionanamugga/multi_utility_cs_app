@@ -1,6 +1,5 @@
-
-#from flask_jwt_extended import jwt_required, get_jwt_identity
-#from app.extensions import db
+'''from flask_jwt_extended import jwt_required, get_jwt_identity
+from app.extensions import db
 
 from flask import Blueprint, request, jsonify
 from app.models import User  # Assuming a User model exists in app.models
@@ -15,12 +14,12 @@ def get_profile():
     """
     Get the current user's profile information.
     """
-    user_id = get_jwt_identity()
+    #user_id = get_jwt_identity()
     user = User.query.get(user_id)
     if not user:
         return jsonify({"error": "User not found"}), 404
 
-    # Return user details
+    Return user details
     return jsonify({
         "name": user.name,
         "email": user.email,
@@ -30,12 +29,12 @@ def get_profile():
 
 
 @profile_bp.route('/profile', methods=['PUT'])
-@jwt_required()
+#@jwt_required()
 def update_profile():
     """
     Update the current user's profile information.
     """
-    user_id = get_jwt_identity()
+    #user_id = get_jwt_identity()
     user = User.query.get(user_id)
     if not user:
         return jsonify({"error": "User not found"}), 404
@@ -62,7 +61,7 @@ def update_profile():
         db.session.rollback()
         return jsonify({"error": "Failed to update profile"}), 500
 
-    return jsonify({"message": "Profile updated successfully"}), 200
+    return jsonify({"message": "Profile updated successfully"}), 200'''
 
 from flask import Blueprint, request, jsonify
 from app.models import User  # Assuming a User model exists in app.models
