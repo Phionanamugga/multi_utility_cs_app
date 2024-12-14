@@ -1,7 +1,8 @@
 from flask import Flask
-#from flask import Blueprint
-#from app.routes.auth import auth_bp
-#from app.routes.profile import profile_bp
+from flask import Blueprint
+from app.routes.auth import auth_bp
+from app.routes.profile import profile_bp
+from app.models import User
 from flask_sqlalchemy import SQLAlchemy # type: ignore
 from flask_migrate import Migrate
 
@@ -20,12 +21,8 @@ def create_app():
 
     # Initialize db with the app
     db.init_app(app)
+    migrate.init_app(app, db)
 
-    # Register Blueprints
-    from app.routes.auth import auth_bp
-    from app.routes.profile import profile_bp
-    from app.routes.user import user_bp
-    
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     print("auth_bp registered")  # Debug print

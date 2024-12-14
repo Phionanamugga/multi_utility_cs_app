@@ -17,6 +17,8 @@ class User(db.Model):
 from app import db  # Import db after app initialization
 from datetime import datetime
 
+
+
 # Define your User model here
 class User(db.Model):
     __tablename__ = 'users'  # Optional: Explicit table name

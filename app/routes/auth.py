@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from app.models import User  # Import the User model
 from app.utils.hashers import hash_password  # Helper for hashing passwords
 from app import db  # Database instance
-from flask_jwt_extended import create_access_token  # JWT for authentication
+from app.models import User  # Import the User model
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required  # JWT for authentication
 auth_bp = Blueprint('auth', __name__)  # Create a blueprint for authentication routes
 
 @auth_bp.route('/signup', methods=['POST'])
@@ -52,3 +52,8 @@ def login():
     access_token = create_access_token(identity=user.id)
 
     return jsonify({"message": "Login successful", "access_token": access_token}), 200
+print("Hashers module functions: ", dir(hash_password))
+
+# Add this in auth.py or hashers.py
+import app.utils.hashers
+print(dir(app.utils.hashers))
