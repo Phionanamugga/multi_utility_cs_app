@@ -1,6 +1,6 @@
 import pytest
-from app import create_app
-from extensions import db
+from app import create_app, db
+
 
 @pytest.fixture
 def test_app():
@@ -22,3 +22,5 @@ def test_app():
 def client(test_app):
     """Fixture to provide a test client."""
     return test_app.test_client()
+
+
