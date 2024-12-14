@@ -24,3 +24,5 @@ def client(test_app):
     return test_app.test_client()
 
 
+def client(app):
+    return app.test_client()
