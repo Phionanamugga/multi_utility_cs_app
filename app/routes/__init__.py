@@ -11,12 +11,12 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(profile_bp, url_prefix='/profile')
     
-    return app
+    return app'''
 
-'''
-from app.routes.auth import auth_bp
+
+'''from app.routes.auth import auth_bp
 from app.routes.profile import profile_bp
 
 # Optionally, you can consolidate the blueprints in a list for easy access
-blueprints = [auth_bp, profile_bp]
+blueprints = [auth_bp, profile_bp]'''
 
